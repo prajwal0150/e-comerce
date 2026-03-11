@@ -1,12 +1,16 @@
 @import "tailwindcss";
 
 
-.body{
-   font-family: "Playfair Display", serif;
+body{
+   font-family: "Playfair Display", ;
   font-optical-sizing: auto;
+  background: #f5f0f0;
+  color:rgba(0,0,0,0,7)
 }
-.container{width:90%;margin:auto;}
+.container{width:95%;margin:auto;}
 
 header .top-strip{border-top: 2px solid rgb(174, 173, 173); border-bottom:1px solid rgb(170, 168, 168);}
 .link:hover{color:rgb(152, 87, 34)}
 .MuiBadge-badge{background-color: coral !important;}
+
+nav ul button{text-transform: capitalize !important; color:rgb(16, 16, 16) !important}

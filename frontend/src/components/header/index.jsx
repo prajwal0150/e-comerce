@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import Search from '../search';
+import Navigation from './Navigation';
 
 import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
@@ -22,8 +23,8 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 const Header = () => {
 return (
-    <header>
-            <div className='top-strip py-2 border-y border-gray-200'> {/* border-y replaces t and b */}
+    <header className='bg-white'>
+  <div className='top-strip py-2 border-t-[1px] border-gray-250 border-b-[1px]'> {/* border-y replaces t and b */}
     <div className='container mx-auto px-4'> {/* Added mx-auto to center container */}
       <div className='flex items-center justify-between'>
         <div className='w-1/2'>
@@ -36,7 +37,7 @@ return (
       </div>
     </div>
   </div>
-  <div className='header py-3'>
+  <div className='header py-4 border-b-[1px] border-gray-200'>
     <div className='container flex items-center justify-between'>
         <div className='col1 w-[25%]'>
             <Link to={'/'}><img src='src/assets/logo.png' className='w-[120px]'/></Link>
@@ -84,6 +85,7 @@ return (
         
     </div>
   </div>
+  <Navigation/>
     </header>
 )
 }
