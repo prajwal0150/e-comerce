@@ -1,6 +1,8 @@
 import React from 'react';
-import { Box, Drawer, List, Divider, ListItem, ListItemButton, ListItemText } from '@mui/material';
+import { Box, Drawer, Button, List, Divider, ListItem, ListItemButton, ListItemText, capitalize } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { FaRegPlusSquare } from "react-icons/fa";
+
 
 const CategoryPanel = ({ isOpenCatPanel, setIsOpenCatPanel }) => {
     const categories = [
@@ -28,12 +30,15 @@ const CategoryPanel = ({ isOpenCatPanel, setIsOpenCatPanel }) => {
                 <List>
                     {categories.map((text) => (
                         <ListItem key={text} disablePadding>
-                            <ListItemButton component={Link} to={`/${text.toLowerCase()}`}>
+                            <Button component={Link} to={`/${text.toLowerCase()}`} className="hover:!text-[red] w-full !text-left !justify-start">
                                 <ListItemText 
                                     primary={text} 
-                                    primaryTypographyProps={{ fontSize: '14px', fontWeight: 500 }}
-                                />
-                            </ListItemButton>
+                                    primaryTypographyProps={{ fontSize: '14px', fontWeight: 500  }}
+                                className=" text-black text-transform: capitalize !important p-1 ml-2 "/>
+                            </Button>
+                            {/* Show icon only for Fashion */}
+                            {text === "Fashion" && <FaRegPlusSquare className="mr-3" />}
+
                         </ListItem>
                     ))}
                 </List>

@@ -1,0 +1,3 @@
+.nav  li:hover .submenu{visibility: hidden; }
+.nav li:hover .submenu{opacity: 1 !important; visibility: inherit; top:100%}
+.nav li .submenu button:hover{color:red !important}
