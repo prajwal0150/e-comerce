@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import registerRouter from "./register.js";
 import loginRouter from "./login.js";
+import forgotPasswordRouter from "./forgotPassword.js";
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use("/api", registerRouter);
 app.use("/api", loginRouter);
+app.use("/api", forgotPasswordRouter);
 
 // app.get("/", (req, res) => {
 // 	res.send("Server is running");
