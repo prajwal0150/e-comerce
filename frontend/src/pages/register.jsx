@@ -14,8 +14,12 @@ const Register = () => {
   const [formData, setFormData] = useState(initialValues);
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState('');
+  const [apiError, setApiError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
 
   // Validate the form before submission and return any field-level errors.
   const validate = () => {
@@ -65,6 +69,10 @@ const Register = () => {
       setSuccessMessage('');
     }
 
+    if (apiError) {
+      setApiError('');
+    }
+
     if (errors[name]) {
       setErrors((current) => ({
         ...current,
@@ -74,7 +82,7 @@ const Register = () => {
   };
 
   // Block invalid submits, otherwise show success and reset the form state.
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const nextErrors = validate();
@@ -82,13 +90,45 @@ const Register = () => {
 
     if (Object.keys(nextErrors).length > 0) {
       setSuccessMessage('');
+      setApiError('');
       return;
     }
 
-    setSuccessMessage('Registration successful. Your account details are valid.');
-    setFormData(initialValues);
-    setShowPassword(false);
-    setShowConfirmPassword(false);
+    try {
+      setIsSubmitting(true);
+      setApiError('');
+
+      const response = await fetch(`${API_BASE_URL}/api/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fullName: formData.fullName,
+          email: formData.email,
+          password: formData.password,
+          confirmPassword: formData.confirmPassword,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setSuccessMessage('');
+        setApiError(data.message || 'Registration failed. Please try again.');
+        return;
+      }
+
+      setSuccessMessage(data.message || 'Registration successful.');
+      setFormData(initialValues);
+      setShowPassword(false);
+      setShowConfirmPassword(false);
+    } catch (error) {
+      setSuccessMessage('');
+      setApiError('Unable to connect to server. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -150,6 +190,12 @@ const Register = () => {
           {successMessage && (
             <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-100 px-4 py-3 text-sm font-semibold text-emerald-900">
               {successMessage}
+            </div>
+          )}
+
+          {apiError && (
+            <div className="mt-6 rounded-2xl border border-red-200 bg-red-100 px-4 py-3 text-sm font-semibold text-red-800">
+              {apiError}
             </div>
           )}
 
@@ -260,9 +306,10 @@ const Register = () => {
 
             <button
               type="submit"
+              disabled={isSubmitting}
               className="mt-2 rounded-2xl bg-linear-to-r from-amber-400 to-amber-600 px-5 py-3.5 text-base font-bold text-white shadow-[0_14px_30px_rgba(217,119,6,0.26)] transition hover:-translate-y-0.5 hover:opacity-95"
             >
-              Create account
+              {isSubmitting ? 'Creating account...' : 'Create account'}
             </button>
 
             <p className="pt-1 text-center text-sm text-slate-600">

@@ -1,5 +1,6 @@
 import Header from './components/header'
 import Home from './pages/Home'
+import Dashboard from './pages/Dashboard'
 import ForgotPassword from './pages/ForgotPassword'
 import Login from './pages/Login'
 import Register from './pages/register'
@@ -10,6 +11,7 @@ const App = () => {
     <Header/>
     <Routes>
       <Route path={"/"} element={<Home/>}/>
+      <Route path={"/dashboard"} element={<Dashboard/>}/>
       <Route path={"/forgot-password"} element={<ForgotPassword/>}/>
       <Route path={"/login"} element={<Login/>}/>
       <Route path={"/register"} element={<Register/>}/>
