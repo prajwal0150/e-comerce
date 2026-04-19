@@ -123,6 +123,11 @@ const Navigation = () => {
                                 <Button className="link transition font-medium! text-[rgb(0,0,0,0.9)]! hover:text-[red]!">Jewellery</Button>
                                 </Link>
                             </li>
+                            <li className="list-none">
+                                <Link to="/contact" className="link transition text-[14px] font-medium">
+                                <Button className="link transition font-medium! text-[rgb(0,0,0,0.9)]! hover:text-[red]!">Contact</Button>
+                                </Link>
+                            </li>
                         </ul> 
                     </div>
                     {/* Delivery Text */}
