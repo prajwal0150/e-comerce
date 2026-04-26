@@ -28,14 +28,14 @@ app.use("/api", registerRouter);
 app.use("/api", loginRouter);
 app.use("/api", forgotPasswordRouter);
 
-// app.get("/", (req, res) => {
-// 	res.send("Server is running");
-// });
+app.get("/", (req, res) => {
+	res.send("Server is running");
+});
 
-// if (!MONGO_URL) {
-// 	console.error("Database URL not found in .env");
-// 	process.exit(1);
-// }
+if (!MONGO_URL) {
+	console.error("Database URL not found in .env");
+	process.exit(1);
+}
 
 mongoose
 	.connect(MONGO_URL)
