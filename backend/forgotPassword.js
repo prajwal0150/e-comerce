@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import { createHash, randomBytes } from 'node:crypto';
+import { validateForgotPassword, validateResetPassword } from './validators.js';
 
 const router = express.Router();
 
@@ -65,7 +66,7 @@ const PasswordResetToken =
 
 const hashValue = (value) => createHash('sha256').update(value).digest('hex');
 
-router.post('/forgot-password', async (req, res) => {
+router.post('/forgot-password', validateForgotPassword, async (req, res) => {
   try {
     const { email } = req.body;
 
@@ -114,30 +115,9 @@ router.post('/forgot-password', async (req, res) => {
   }
 });
 
-router.post('/reset-password', async (req, res) => {
+router.post('/reset-password', validateResetPassword, async (req, res) => {
   try {
-    const { token, newPassword, confirmPassword } = req.body;
-
-    if (!token || !newPassword || !confirmPassword) {
-      return res.status(400).json({
-        success: false,
-        message: 'token, newPassword and confirmPassword are required.',
-      });
-    }
-
-    if (newPassword.length < 8) {
-      return res.status(400).json({
-        success: false,
-        message: 'Password must be at least 8 characters.',
-      });
-    }
-
-    if (newPassword !== confirmPassword) {
-      return res.status(400).json({
-        success: false,
-        message: 'Passwords do not match.',
-      });
-    }
+    const { token, newPassword } = req.body;
 
     const tokenHash = hashValue(String(token));
     const resetRecord = await PasswordResetToken.findOne({

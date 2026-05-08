@@ -2,6 +2,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import { createHash } from 'node:crypto';
+import { validateLogin } from './validators.js';
 import jwt from 'jsonwebtoken';
 
 const router = express.Router();
@@ -35,16 +36,11 @@ const User = mongoose.models.User || mongoose.model('User', userSchema);
 
 const hashValue = (value) => createHash('sha256').update(String(value)).digest('hex');
 
-router.post('/login', async (req, res) => {
+router.post('/login', validateLogin, async (req, res) => {
 	try {
 		const { email, password } = req.body || {};
 
-		if (!email || !password) {
-			return res.status(400).json({ success: false, message: 'email and password are required.' });
-		}
-
-		const normalizedEmail = String(email).toLowerCase().trim();
-		const user = await User.findOne({ email: normalizedEmail });
+		const user = await User.findOne({ email });
 
 		// Avoid user enumeration
 		if (!user) {

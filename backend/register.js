@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import { createHash } from 'node:crypto';
+import { validateRegister } from './validators.js';
 
 const router = express.Router();
 
@@ -33,33 +34,11 @@ const User = mongoose.models.User || mongoose.model('User', userSchema);
 
 const hashPassword = (plainPassword) => createHash('sha256').update(plainPassword).digest('hex');
 
-router.post('/register', async (req, res) => {
+router.post('/register', validateRegister, async (req, res) => {
   try {
-    const { fullName, email, password, confirmPassword } = req.body;
+    const { fullName, email, password } = req.body;
 
-    if (!fullName || !email || !password || !confirmPassword) {
-      return res.status(400).json({
-        success: false,
-        message: 'fullName, email, password and confirmPassword are required.',
-      });
-    }
-
-    if (password.length < 8) {
-      return res.status(400).json({
-        success: false,
-        message: 'Password must be at least 8 characters.',
-      });
-    }
-
-    if (password !== confirmPassword) {
-      return res.status(400).json({
-        success: false,
-        message: 'Passwords do not match.',
-      });
-    }
-
-    const normalizedEmail = String(email).toLowerCase().trim();
-    const existingUser = await User.findOne({ email: normalizedEmail });
+    const existingUser = await User.findOne({ email });
 
     if (existingUser) {
       return res.status(409).json({
