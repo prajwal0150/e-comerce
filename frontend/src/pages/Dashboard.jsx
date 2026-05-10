@@ -66,12 +66,13 @@ const activity = [
 
 const Dashboard = () => {
 	return (
-		<main className="min-h-screen bg-slate-100/80 pb-10 pt-6 text-slate-900">
+		<main className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50 pb-10 pt-6 text-slate-900">
 			<div className="container mx-auto space-y-6 px-4">
-				<section className="overflow-hidden rounded-[2rem] bg-slate-950 text-white shadow-[0_24px_90px_rgba(15,23,42,0.25)]">
-					<div className="grid gap-8 px-6 py-8 lg:grid-cols-[1.2fr_0.8fr] lg:px-10 lg:py-10">
+				<section className="overflow-hidden rounded-[2rem] bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white shadow-[0_24px_90px_rgba(15,23,42,0.35)] border border-white/5">
+					<div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none"></div>
+					<div className="grid gap-8 px-6 py-8 lg:grid-cols-[1.2fr_0.8fr] lg:px-10 lg:py-10 relative z-10">
 						<div className="relative">
-							<div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-200">
+							<div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-200 hover:bg-white/10 hover:border-white/20 transition duration-300">
 								<FiBarChart2 className="text-[14px]" />
 								Commerce overview
 							</div>
