@@ -103,50 +103,50 @@ const Dashboard = () => {
 									['96%', 'Fulfillment'],
 									['3.2h', 'Avg. response time'],
 								].map(([value, label]) => (
-									<div key={label} className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur">
-										<div className="text-2xl font-semibold text-white">{value}</div>
-										<div className="mt-1 text-sm text-slate-300">{label}</div>
+									<div key={label} className="rounded-2xl border border-white/15 bg-white/5 p-4 backdrop-blur hover:bg-white/10 hover:border-white/25 transition duration-300 group cursor-pointer">
+										<div className="text-3xl font-bold text-white group-hover:text-sky-200 transition">{value}</div>
+										<div className="mt-2 text-sm text-slate-300 group-hover:text-slate-200 transition">{label}</div>
 									</div>
 								))}
 							</div>
 						</div>
 
-						<div className="rounded-[1.75rem] border border-white/10 bg-white/10 p-5 backdrop-blur">
-							<div className="flex items-center justify-between gap-4">
+						<div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl hover:bg-white/10 transition duration-300">
+							<div className="flex items-center justify-between gap-4 mb-2">
 								<div>
-									<p className="text-sm text-slate-300">Revenue trend</p>
-									<h2 className="mt-1 text-2xl font-semibold text-white">$128,490</h2>
+									<p className="text-sm text-slate-300 font-medium">Revenue trend</p>
+									<h2 className="mt-2 text-3xl font-bold text-white">$128,490</h2>
 								</div>
-								<div className="rounded-full bg-emerald-400/15 px-3 py-1 text-xs font-semibold text-emerald-300">
-									+18.2%
+								<div className="rounded-full bg-emerald-500/20 px-4 py-2 text-sm font-bold text-emerald-300 border border-emerald-500/30">
+									📈 +18.2%
 								</div>
 							</div>
 
-							<div className="mt-6 flex h-64 items-end gap-2 rounded-3xl bg-slate-900/70 p-4">
+							<div className="mt-8 flex h-72 items-end gap-2 rounded-3xl bg-slate-900/70 p-5 border border-white/5">
 								{revenueBars.map((bar, index) => (
-									<div key={index} className="flex h-full flex-1 items-end">
+									<div key={index} className="flex h-full flex-1 items-end group">
 										<div
-											className="w-full rounded-t-2xl bg-gradient-to-t from-cyan-400 via-sky-500 to-indigo-400 shadow-[0_12px_30px_rgba(56,189,248,0.35)]"
+											className="w-full rounded-t-xl bg-gradient-to-t from-cyan-400 via-sky-500 to-indigo-400 shadow-[0_12px_30px_rgba(56,189,248,0.4)] transition-all duration-300 hover:shadow-[0_16px_40px_rgba(56,189,248,0.6)] hover:brightness-110 group-hover:opacity-100 opacity-80"
 											style={{ height: `${bar}%` }}
 										/>
 									</div>
 								))}
 							</div>
 
-							<div className="mt-4 grid gap-3 sm:grid-cols-2">
-								<div className="rounded-2xl bg-white/5 p-4">
-									<div className="flex items-center gap-2 text-sm text-slate-300">
-										<FiActivity />
+							<div className="mt-6 grid gap-3 sm:grid-cols-2">
+								<div className="rounded-2xl bg-white/5 border border-white/10 p-4 hover:bg-white/10 hover:border-white/20 transition duration-300">
+									<div className="flex items-center gap-2 text-sm text-slate-300 font-medium">
+										<span className="text-lg">🌐</span>
 										Traffic sources
 									</div>
-									<div className="mt-3 text-2xl font-semibold text-white">62% organic</div>
+									<div className="mt-3 text-2xl font-bold text-white">62% organic</div>
 								</div>
-								<div className="rounded-2xl bg-white/5 p-4">
-									<div className="flex items-center gap-2 text-sm text-slate-300">
-										<FiStar />
+								<div className="rounded-2xl bg-white/5 border border-white/10 p-4 hover:bg-white/10 hover:border-white/20 transition duration-300">
+									<div className="flex items-center gap-2 text-sm text-slate-300 font-medium">
+										<span className="text-lg">⭐</span>
 										Customer rating
 									</div>
-									<div className="mt-3 text-2xl font-semibold text-white">4.9/5.0</div>
+									<div className="mt-3 text-2xl font-bold text-white">4.9/5.0</div>
 								</div>
 							</div>
 						</div>
