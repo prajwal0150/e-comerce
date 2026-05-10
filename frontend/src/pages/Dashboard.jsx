@@ -76,7 +76,7 @@ const Dashboard = () => {
 								<FiBarChart2 className="text-[14px]" />
 								Commerce overview
 							</div>
-							<h1 className="max-w-2xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
+							<h1 className="max-w-2xl text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl bg-gradient-to-r from-white via-slate-100 to-slate-200 bg-clip-text text-transparent">
 								A polished control center for sales, inventory, and customer momentum.
 							</h1>
 							<p className="mt-4 max-w-2xl text-sm leading-6 text-slate-300 md:text-base">
@@ -86,12 +86,12 @@ const Dashboard = () => {
 							<div className="mt-6 flex flex-wrap gap-3">
 								<Link
 									to="/"
-									className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition hover:translate-y-[-1px]"
+									className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-white to-slate-100 px-5 py-3 text-sm font-semibold text-slate-950 transition duration-300 hover:shadow-lg hover:shadow-white/20 hover:scale-105 active:scale-95"
 								>
 									View storefront
 									<FiArrowUpRight />
 								</Link>
-								<button className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10">
+								<button className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition duration-300 hover:bg-white/10 hover:border-white/40 hover:shadow-lg hover:shadow-white/10">
 									Export report
 									<FiClock />
 								</button>
@@ -160,16 +160,19 @@ const Dashboard = () => {
 						return (
 							<article
 								key={stat.label}
-								className="rounded-3xl border border-white bg-white p-5 shadow-[0_16px_50px_rgba(15,23,42,0.08)]"
+								className="group rounded-3xl border border-white bg-white p-6 shadow-[0_16px_50px_rgba(15,23,42,0.08)] transition duration-300 hover:shadow-[0_24px_60px_rgba(15,23,42,0.15)] hover:-translate-y-1"
 							>
 								<div className="flex items-start justify-between gap-4">
 									<div>
 										<p className="text-sm font-medium text-slate-500">{stat.label}</p>
-										<div className="mt-2 text-3xl font-semibold tracking-tight text-slate-950">{stat.value}</div>
-										<p className="mt-2 text-sm text-emerald-600">{stat.change}</p>
+										<div className="mt-2 text-3xl font-bold tracking-tight text-slate-950">{stat.value}</div>
+										<p className="mt-2 text-sm font-medium text-emerald-600 flex items-center gap-1">
+											<FiTrendingUp className="w-4 h-4" />
+											{stat.change}
+										</p>
 									</div>
-									<div className={`rounded-2xl bg-gradient-to-br ${stat.accent} p-3 text-white shadow-lg`}>
-										<Icon className="text-xl" />
+									<div className={`rounded-2xl bg-gradient-to-br ${stat.accent} p-4 text-white shadow-lg transition duration-300 group-hover:shadow-[0_12px_30px_rgba(99,102,241,0.4)] group-hover:scale-110`}>
+										<Icon className="text-2xl" />
 									</div>
 								</div>
 							</article>
@@ -178,50 +181,50 @@ const Dashboard = () => {
 				</section>
 
 				<section className="grid gap-6 xl:grid-cols-[1.35fr_0.85fr]">
-					<article className="rounded-[2rem] border border-white bg-white p-6 shadow-[0_16px_50px_rgba(15,23,42,0.08)]">
-						<div className="flex items-center justify-between gap-4">
+					<article className="rounded-[2rem] border border-white bg-white p-6 shadow-[0_16px_50px_rgba(15,23,42,0.08)] transition duration-300 hover:shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
+						<div className="flex items-center justify-between gap-4 mb-2">
 							<div>
 								<p className="text-sm font-medium text-slate-500">Recent orders</p>
-								<h2 className="mt-1 text-2xl font-semibold text-slate-950">Fulfillment queue</h2>
+								<h2 className="mt-1 text-2xl font-bold text-slate-950">Fulfillment queue</h2>
 							</div>
-							<button className="rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800">
+							<button className="rounded-full bg-gradient-to-r from-slate-950 to-slate-800 px-4 py-2 text-sm font-semibold text-white transition duration-300 hover:shadow-lg hover:shadow-slate-950/30 active:scale-95">
 								View all
 							</button>
 						</div>
 
-						<div className="mt-6 overflow-hidden rounded-3xl border border-slate-200">
+						<div className="mt-6 overflow-hidden rounded-3xl border border-slate-200 hover:border-slate-300 transition duration-300">
 							<table className="min-w-full divide-y divide-slate-200 text-left text-sm">
-								<thead className="bg-slate-50 text-slate-500">
+								<thead className="bg-gradient-to-r from-slate-50 to-slate-100 text-slate-700">
 									<tr>
-										<th className="px-4 py-3 font-medium">Order</th>
-										<th className="px-4 py-3 font-medium">Customer</th>
-										<th className="px-4 py-3 font-medium">Date</th>
-										<th className="px-4 py-3 font-medium">Status</th>
-										<th className="px-4 py-3 font-medium text-right">Amount</th>
+										<th className="px-4 py-4 font-bold">Order</th>
+										<th className="px-4 py-4 font-bold">Customer</th>
+										<th className="px-4 py-4 font-bold">Date</th>
+										<th className="px-4 py-4 font-bold">Status</th>
+										<th className="px-4 py-4 font-bold text-right">Amount</th>
 									</tr>
 								</thead>
 								<tbody className="divide-y divide-slate-200 bg-white">
 									{orders.map((order) => (
-										<tr key={order.id} className="transition hover:bg-slate-50/80">
-											<td className="px-4 py-4 font-medium text-slate-950">{order.id}</td>
+										<tr key={order.id} className="transition duration-200 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-indigo-50/50 group cursor-pointer">
+											<td className="px-4 py-4 font-semibold text-slate-950">{order.id}</td>
 											<td className="px-4 py-4 text-slate-600">{order.customer}</td>
-											<td className="px-4 py-4 text-slate-600">{order.date}</td>
+											<td className="px-4 py-4 text-slate-600 text-sm">{order.date}</td>
 											<td className="px-4 py-4">
 												<span
-													className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${
+													className={`inline-flex rounded-full px-3 py-1.5 text-xs font-bold transition duration-300 ${
 														order.status === 'Delivered'
-															? 'bg-emerald-50 text-emerald-700'
+															? 'bg-emerald-100 text-emerald-700 group-hover:shadow-md group-hover:shadow-emerald-200'
 															: order.status === 'Packing'
-																? 'bg-amber-50 text-amber-700'
+																? 'bg-amber-100 text-amber-700 group-hover:shadow-md group-hover:shadow-amber-200'
 																: order.status === 'Refund'
-																	? 'bg-rose-50 text-rose-700'
-																	: 'bg-sky-50 text-sky-700'
+																	? 'bg-rose-100 text-rose-700 group-hover:shadow-md group-hover:shadow-rose-200'
+																	: 'bg-sky-100 text-sky-700 group-hover:shadow-md group-hover:shadow-sky-200'
 													}`}
 												>
 													{order.status}
 												</span>
 											</td>
-											<td className="px-4 py-4 text-right font-semibold text-slate-950">{order.amount}</td>
+											<td className="px-4 py-4 text-right font-bold text-slate-950">{order.amount}</td>
 										</tr>
 									))}
 								</tbody>
@@ -230,48 +233,57 @@ const Dashboard = () => {
 					</article>
 
 					<div className="space-y-6">
-						<article className="rounded-[2rem] border border-white bg-white p-6 shadow-[0_16px_50px_rgba(15,23,42,0.08)]">
-							<div className="flex items-center justify-between gap-4">
+						<article className="rounded-[2rem] border border-white bg-gradient-to-br from-white to-slate-50 p-6 shadow-[0_16px_50px_rgba(15,23,42,0.08)] transition duration-300 hover:shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
+							<div className="flex items-center justify-between gap-4 mb-2">
 								<div>
 									<p className="text-sm font-medium text-slate-500">Top products</p>
-									<h2 className="mt-1 text-2xl font-semibold text-slate-950">Best sellers</h2>
+									<h2 className="mt-1 text-2xl font-bold text-slate-950">Best sellers</h2>
 								</div>
-								<FiPackage className="text-2xl text-slate-400" />
+								<div className="rounded-full bg-gradient-to-br from-amber-100 to-orange-100 p-3">
+									<FiPackage className="text-2xl text-amber-600" />
+								</div>
 							</div>
 
-							<div className="mt-5 space-y-4">
+							<div className="mt-5 space-y-3">
 								{products.map((product, index) => (
-									<div key={product.name} className="flex items-center justify-between rounded-2xl bg-slate-50 p-4">
+									<div key={product.name} className="flex items-center justify-between rounded-2xl bg-white p-4 border border-slate-200 hover:border-amber-300 transition duration-300 hover:shadow-md hover:shadow-amber-100/50 group cursor-pointer">
 										<div>
-											<div className="font-semibold text-slate-950">{index + 1}. {product.name}</div>
+											<div className="font-bold text-slate-950">
+												<span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gradient-to-br from-amber-400 to-orange-400 text-white text-xs font-bold mr-2">
+													{index + 1}
+												</span>
+												{product.name}
+											</div>
 											<div className="mt-1 text-sm text-slate-500">{product.sales}</div>
 										</div>
-										<div className="rounded-full bg-slate-950 px-3 py-1 text-sm font-semibold text-white">
-											{product.rating}
+										<div className="rounded-full bg-gradient-to-r from-slate-950 to-slate-800 px-4 py-1.5 text-sm font-bold text-white shadow-md group-hover:shadow-lg transition duration-300">
+											⭐ {product.rating}
 										</div>
 									</div>
 								))}
 							</div>
 						</article>
 
-						<article className="rounded-[2rem] border border-white bg-white p-6 shadow-[0_16px_50px_rgba(15,23,42,0.08)]">
-							<div className="flex items-center justify-between gap-4">
+						<article className="rounded-[2rem] border border-white bg-gradient-to-br from-white to-slate-50 p-6 shadow-[0_16px_50px_rgba(15,23,42,0.08)] transition duration-300 hover:shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
+							<div className="flex items-center justify-between gap-4 mb-2">
 								<div>
 									<p className="text-sm font-medium text-slate-500">Live activity</p>
-									<h2 className="mt-1 text-2xl font-semibold text-slate-950">Operations feed</h2>
+									<h2 className="mt-1 text-2xl font-bold text-slate-950">Operations feed</h2>
 								</div>
-								<FiClock className="text-2xl text-slate-400" />
+								<div className="rounded-full bg-gradient-to-br from-sky-100 to-blue-100 p-3">
+									<FiClock className="text-2xl text-sky-600" />
+								</div>
 							</div>
 
 							<div className="mt-5 space-y-4">
 								{activity.map((item) => (
-									<div key={item.title} className="rounded-2xl border border-slate-200 p-4">
-										<div className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${item.tone}`}>
-											Update
+									<div key={item.title} className="rounded-2xl border border-slate-200 bg-white p-4 hover:border-slate-300 transition duration-300 hover:shadow-md group cursor-pointer">
+										<div className={`inline-flex rounded-full px-3 py-1.5 text-xs font-bold transition duration-300 ${item.tone}`}>
+											🔔 Update
 										</div>
-										<h3 className="mt-3 font-semibold text-slate-950">{item.title}</h3>
-										<p className="mt-1 text-sm leading-6 text-slate-500">{item.detail}</p>
-										<p className="mt-3 text-xs font-medium uppercase tracking-[0.2em] text-slate-400">{item.time}</p>
+										<h3 className="mt-3 font-bold text-slate-950">{item.title}</h3>
+										<p className="mt-2 text-sm leading-6 text-slate-600">{item.detail}</p>
+										<p className="mt-3 text-xs font-bold uppercase tracking-widest text-slate-400">{item.time}</p>
 									</div>
 								))}
 							</div>
