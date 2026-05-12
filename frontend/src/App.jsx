@@ -1,6 +1,6 @@
 import Header from './components/header'
 import Home from './pages/Home'
-import Dashboard from './pages/Dashboard'
+import Dashboard from './pages/dashboard'
 import ForgotPassword from './pages/ForgotPassword'
 import Login from './pages/Login'
 import Register from './pages/register'
