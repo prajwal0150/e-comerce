@@ -49,7 +49,7 @@ router.post('/register', validateRegister, async (req, res) => {
 
     const user = await User.create({
       fullName: String(fullName).trim(),
-      email: normalizedEmail,
+        email: String(email).toLowerCase().trim(),
       passwordHash: hashPassword(password),
     });
 
