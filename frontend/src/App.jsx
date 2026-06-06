@@ -5,6 +5,7 @@ import ForgotPassword from './pages/ForgotPassword'
 import Login from './pages/Login'
 import Register from './pages/register'
 import ContactUs from './pages/ContactUs'
+import AboutUs from './pages/aboutus'
 import { BrowserRouter, Routes,Route } from 'react-router-dom'
 const App = () => {
   return (  
@@ -12,6 +13,7 @@ const App = () => {
     <Header/>
     <Routes>
       <Route path={"/"} element={<Home/>}/>
+      <Route path={"/about"} element={<AboutUs/>}/>
       <Route path={"/dashboard"} element={<Dashboard/>}/>
       <Route path={"/forgot-password"} element={<ForgotPassword/>}/>
       <Route path={"/login"} element={<Login/>}/>
